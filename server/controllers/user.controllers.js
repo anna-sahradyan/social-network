@@ -3,7 +3,7 @@ import {registerValidator} from "../validations/auth.js";
 import {validationResult} from "express-validator";
 import User from "../models/User.js";
 import bcrypt from "bcrypt";
-
+//!SIGNUP REGISTER
 export const signUp = async (req, res) => {
     try {
         const errors = validationResult(req);
@@ -17,7 +17,7 @@ export const signUp = async (req, res) => {
             email: req.body.email,
             fullName: req.body.fullName,
             avatarUrl: req.body.avatarUrl,
-            passwordHash:hash,
+            passwordHash: hash,
         });
         const user = await doc.save();
         const token = jwt.sign({
@@ -43,4 +43,44 @@ export const signUp = async (req, res) => {
     }
 
 
+}
+//!SIGNIN LOGIN
+export const signIn = async (req, res) => {
+    try {
+        const user = await User.findOne({
+            email: req.body.email
+        })
+        if (!user) {
+            return req.status(404).json({
+                message: "incorrect login or password"
+            });
+
+        }
+        const isValidPass = await bcrypt.compare(req.body.password, user._doc.passwordHash);
+        if (!isValidPass) {
+            return  res.status(404).json({
+                message: "incorrect login or password"
+            })
+        }
+        const token = jwt.sign({
+                _id: user._id,
+
+            },
+            process.env.PASS_SEC,
+
+            {
+                expiresIn: "30d"
+            },
+        );
+        const {passwordHash, ...userData} = user._doc;
+        res.json({
+            ...userData,
+            token
+        });
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({
+            message: "couldn't authorisation "
+        });
+    }
 }
