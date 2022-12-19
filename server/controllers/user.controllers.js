@@ -58,7 +58,7 @@ export const signIn = async (req, res) => {
         }
         const isValidPass = await bcrypt.compare(req.body.password, user._doc.passwordHash);
         if (!isValidPass) {
-            return  res.status(404).json({
+            return res.status(400).json({
                 message: "incorrect login or password"
             })
         }
@@ -66,7 +66,7 @@ export const signIn = async (req, res) => {
                 _id: user._id,
 
             },
-            process.env.PASS_SEC,
+            process.env.SECRET,
 
             {
                 expiresIn: "30d"
@@ -78,9 +78,26 @@ export const signIn = async (req, res) => {
             token
         });
     } catch (err) {
-        console.log(err)
+
         res.status(500).json({
             message: "couldn't authorisation "
+        });
+    }
+}
+//!GET ME
+export const getMe = async (req, res) => {
+    try {
+        const user = await User.findById(req.userId);
+        if(!user){
+            return res.status(404).json({
+                message:"User couldn't found "
+            })
+        }
+        const {passwordHash, ...userData} = user._doc;
+        res.json(userData);
+    } catch (err) {
+        res.status(500).json({
+            message: "No access "
         });
     }
 }
