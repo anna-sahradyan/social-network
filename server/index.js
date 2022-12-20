@@ -7,12 +7,16 @@ import userRoutes from "./routes/user.routes.js";
 const app = express();
 dotenv.config();
 app.use(express.json());
+app.use("/users", userRoutes);
+app.use("/posts",postRoutes);
+
+
+//!connect mongoose
 mongoose.set("strictQuery", false);
 mongoose.connect(process.env.MONGO_DB).then(() => {
     console.log("DB OK")
 })
     .catch((err) => console.log(err))
-app.use("/users",userRoutes)
 
 
 app.listen(8000, (err) => {
