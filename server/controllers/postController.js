@@ -21,8 +21,45 @@ export const create = async (req, res) => {
 //!GET ALL
 export const getAll = async (req, res) => {
     try {
-        const posts = await Post.find();
+        const posts = await Post.find().populate("user").exec();
         res.json(posts)
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({
+            message: "couldn't get posts"
+        });
+    }
+
+}
+//!GET ONE
+export const getOne = async (req, res) => {
+    try {
+        const postId = req.params.id;
+        Post.findOneAndUpdate({
+                _id: postId,
+            },
+            {
+                $inc: {viewsCount: 1},
+            },
+            {
+                returnDocument: "after",
+            },
+            (err, doc) => {
+                if (err) {
+                    console.log(err);
+                    return res.status(500).json({
+                        message: "couldn't get back  posts"
+                    });
+                }
+                if (!doc) {
+                    return res.status(404).json({
+                        message: "couldn't found posts"
+                    })
+                }
+                res.json(doc);
+            },
+            );
 
     } catch (err) {
         console.log(err);
