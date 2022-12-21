@@ -54,12 +54,12 @@ export const getOne = async (req, res) => {
                 }
                 if (!doc) {
                     return res.status(404).json({
-                        message: "couldn't found posts"
+                        message: "couldn't found  a post"
                     })
                 }
                 res.json(doc);
             },
-            );
+        );
 
     } catch (err) {
         console.log(err);
@@ -68,4 +68,30 @@ export const getOne = async (req, res) => {
         });
     }
 
+}
+//!DELETE
+export const remove = async (req, res) => {
+    try {
+        const postId = req.params.id;
+        Post.findByIdAndDelete({
+            _id: postId
+        }, (err, doc) => {
+            if (err) {
+                return res.status(500).json({
+                    message: "couldn't found a post"
+                });
+            }
+            if (!doc) {
+                return res.status(404).json({
+                    message: "couldn't found  a post"
+                })
+            }
+            res.json({
+                success:true
+            });
+        });
+
+    } catch (err) {
+        console.log(err)
+    }
 }
