@@ -1,4 +1,5 @@
 import Post from "../models/Post.js";
+import router from "../routes/post.router.js";
 //!CREATE
 export const create = async (req, res) => {
     try {
@@ -87,11 +88,42 @@ export const remove = async (req, res) => {
                 })
             }
             res.json({
-                success:true
+                success: true
             });
         });
 
     } catch (err) {
-        console.log(err)
+        res.status(500).json({
+            message: "couldn't get posts"
+        });
     }
+}
+//!UPDATE
+export const update = async (req, res) => {
+
+    try {
+        const postId = req.params.id;
+        await Post.updateOne({
+                _id: postId,
+            },
+            {
+
+                title: req.body.title,
+                text: req.body.title,
+                ImgUrl: req.body.ImgUrl,
+                user: req.userId,
+                tags: req.body.tags,
+
+            },
+        );
+        res.json({
+            success: true
+        })
+
+    } catch (err) {
+        res.status(500).json({
+            message: "couldn't updates  post"
+        });
+    }
+
 }
