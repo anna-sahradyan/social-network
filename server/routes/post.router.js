@@ -9,7 +9,7 @@ router.get(`/`, getAll);
 router.get(`/:id`, getOne);
 router.post(`/`, checkAuth, postCreateValidator, create);
 router.delete(`/:id`, checkAuth, remove);
-router.patch(`/:id`, checkAuth, update);
+router.patch(`/:id`, checkAuth,postCreateValidator, update);
 
 
 

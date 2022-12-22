@@ -1,14 +1,10 @@
 import jwt from "jsonwebtoken";
-import {validationResult} from "express-validator";
 import User from "../models/User.js";
 import bcrypt from "bcrypt";
 //!SIGNUP REGISTER
 export const signUp = async (req, res) => {
     try {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.status(400).json(errors.array());
-        }
+
         const password = req.body.password;
         const salt = await bcrypt.genSalt(10);
         const hash = await bcrypt.hash(password, salt);
@@ -22,8 +18,8 @@ export const signUp = async (req, res) => {
         const token = jwt.sign({
                 _id: user._id,
 
-            },
-            process.env.PASS_SEC,
+            },"secret"
+           ,
 
             {
                 expiresIn: "30d"
@@ -65,7 +61,7 @@ export const signIn = async (req, res) => {
                 _id: user._id,
 
             },
-            process.env.SECRET,
+            "secret",
 
             {
                 expiresIn: "30d"
