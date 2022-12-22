@@ -1,5 +1,4 @@
 import Post from "../models/Post.js";
-import router from "../routes/post.router.js";
 //!CREATE
 export const create = async (req, res) => {
     try {

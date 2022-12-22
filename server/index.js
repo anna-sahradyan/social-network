@@ -4,13 +4,30 @@ import dotenv from "dotenv";
 import userRoutes from "./routes/user.routes.js";
 import postRoutes from "./routes/post.router.js";
 
+import multer from "multer";
+import checkAuth from "./utils/checkAuth.js";
 
 const app = express();
 dotenv.config();
+//!uploads img
+const storage = multer.diskStorage({
+    destination: (_, __, cb) => {
+        cb(null, "uploads");
+    },
+    filename: (_, file, cb) => {
+        cb(null, file.originalname);
+    }
+});
+const upload = multer({storage});
+app.post("/upload",checkAuth, upload.single("image"), (req, res) => {
+    res.json({
+        url: `/uploads${req.file.originalname}`,
+
+    });
+});
 app.use(express.json());
 app.use("/users", userRoutes);
-app.use("/posts",postRoutes);
-
+app.use("/posts", postRoutes);
 
 //!connect mongoose
 mongoose.set("strictQuery", false);
