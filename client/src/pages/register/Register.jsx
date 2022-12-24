@@ -23,7 +23,7 @@ const Register = () => {
                     <Title>CREATE AN ACCOUNT</Title>
                     <Form onSubmit={(e) => e.preventDefault()}>
                         <Input placeholder={'email'}/>
-                        <Input placeholder={'fullName'}/>
+                        <Input placeholder={'full name'}/>
                         <Input placeholder={'password'}/>
                         {/*<Input placeholder={'confirm password'}/>*/}
 
