@@ -1,10 +1,25 @@
 import React from 'react';
+import {Container,Wrapper} from "./rightBarStyled";
+
 
 const RightBar = () => {
+    const HomeRightBar = () => {
+        return (
+            <>
+
+            </>
+        )
+
+    }
     return (
-        <div>
-            
-        </div>
+        <>
+            <Container>
+                <Wrapper>
+
+
+                </Wrapper>
+            </Container>
+        </>
     );
 };
 
