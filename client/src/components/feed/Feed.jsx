@@ -4,6 +4,7 @@ import {Tab, Tabs} from "@mui/material";
 import Post from "../post/Post";
 import {Posts} from "../../data";
 import Share from "../share/Share";
+import AddPost from "../addPost/AddPost";
 
 const Feed = () => {
     return (
