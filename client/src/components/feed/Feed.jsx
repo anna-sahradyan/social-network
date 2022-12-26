@@ -2,7 +2,8 @@ import React from 'react';
 import {Container, Wrapper} from "./feedStyle";
 import {Tab, Tabs} from "@mui/material";
 import Post from "../post/Post";
-
+import {Posts} from "../../data";
+import Share from "../share/Share";
 
 const Feed = () => {
     return (
@@ -13,8 +14,11 @@ const Feed = () => {
                         <Tab label={"New"}/>
                         <Tab label={"Popular"}/>
                     </Tabs>
-                    <Post/>
-                    <Post/>
+                    <Share/>
+
+                    {Posts.map((post,index)=>( <Post key={`${post}_${index}`} post={post}/>))}
+
+
                 </Wrapper>
             </Container>
         </>

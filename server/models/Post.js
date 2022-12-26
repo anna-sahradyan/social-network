@@ -13,10 +13,16 @@ const PostSchema = new mongoose.Schema({
         type: Array,
         default: [],
 
-    }, viewsCount: {
+    },
+    likes:{
+        type:"Array",
+        default:[],
+    },
+    viewsCount: {
         type: Number,
         default: 0,
-    }, user: {
+    },
+    user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
         unique: true,
