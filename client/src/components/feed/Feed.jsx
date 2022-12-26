@@ -1,5 +1,7 @@
 import React from 'react';
 import {Container, Wrapper} from "./feedStyle";
+import {Tab, Tabs} from "@mui/material";
+import Post from "../post/Post";
 
 
 const Feed = () => {
@@ -7,7 +9,12 @@ const Feed = () => {
         <>
             <Container>
                 <Wrapper>
-<h1>hello feed</h1>
+                    <Tabs style={{marginBottom: 15}} value={0} aria-label="basic tabs example">
+                        <Tab label={"New"}/>
+                        <Tab label={"Popular"}/>
+                    </Tabs>
+                    <Post/>
+                    <Post/>
                 </Wrapper>
             </Container>
         </>
