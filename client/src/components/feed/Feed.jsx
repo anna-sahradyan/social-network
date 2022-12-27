@@ -5,6 +5,7 @@ import Post from "../post/Post";
 import {Posts} from "../../data";
 import Share from "../share/Share";
 import AddPost from "../addPost/AddPost";
+import PostSkeleton from "../post/PostSkeleton";
 
 const Feed = () => {
     return (
@@ -16,7 +17,8 @@ const Feed = () => {
                         <Tab label={"Popular"}/>
                     </Tabs>
                     <Share/>
-                    <AddPost/>
+                    {/*<AddPost/>*/}
+                    {/*<PostSkeleton/>*/}
 
                     {Posts.map((post,index)=>( <Post key={`${post}_${index}`} post={post}/>))}
 
