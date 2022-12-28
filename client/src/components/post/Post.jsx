@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     Bottom,
     Center, Comment,
@@ -14,7 +14,7 @@ import {
 } from "./postStyled";
 import {MoreVert} from "@material-ui/icons";
 import {Users} from "../../data";
-
+import axios from "../../axios";
 
 const Post = ({post}) => {
     const [like, setLike] = useState(post.like);
@@ -23,6 +23,10 @@ const Post = ({post}) => {
         setLike(isLiked ? like - 1 : like + 1);
         setIsLiked(!isLiked)
     }
+    useEffect(() => {
+
+        axios.get("/posts")
+    }, [])
     return (
         <>
             <Container>
@@ -45,7 +49,7 @@ const Post = ({post}) => {
                         <Tags>
                             <List>
 
-                                    <Li><Link href={`/post?.tag/${post?.tags}`}>#{post?.tags}</Link></Li>
+                                <Li><Link href={`/post?.tag/${post?.tags}`}>#{post?.tags}</Link></Li>
 
                             </List>
                         </Tags>

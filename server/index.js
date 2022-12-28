@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import * as  dotenv from "dotenv";
 import userRoutes from "./routes/user.routes.js";
 import postRoutes from "./routes/post.router.js";
-
+import cors from "cors";
 import multer from "multer";
 import checkAuth from "./utils/checkAuth.js";
 
@@ -26,9 +26,9 @@ app.post("/upload", checkAuth, upload.single("image"), (req, res) => {
 
     });
 });
-
-app.use("/uploads", express.static("uploads"))
+app.use(cors());
 app.use(express.json());
+app.use("/uploads", express.static("uploads"))
 app.use("/users", userRoutes);
 app.use("/posts", postRoutes);
 

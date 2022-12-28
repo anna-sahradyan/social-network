@@ -137,5 +137,8 @@ export const Li = styled.li`
 `;
 export const Link = styled.a`
   text-decoration: none;
+  color:#2D7ECD;
+  font-weight: 500;
+  
 `;
 
