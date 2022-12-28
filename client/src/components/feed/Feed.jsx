@@ -17,7 +17,6 @@ const Feed = () => {
                         <Tab label={"Popular"}/>
                     </Tabs>
                     <Share/>
-                    {/*<AddPost/>*/}
                     {/*<PostSkeleton/>*/}
 
                     {Posts.map((post,index)=>( <Post key={`${post}_${index}`} post={post}/>))}

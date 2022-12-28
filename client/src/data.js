@@ -60,6 +60,7 @@ export const Posts = [
         userId: 1,
         like: 32,
         comment: 9,
+        tags:"USA"
     },
     {
         id: 2,
@@ -68,6 +69,7 @@ export const Posts = [
         userId: 2,
         like: 2,
         comment: 1,
+        tags:"USA"
     },
     {
         id: 3,
@@ -77,6 +79,7 @@ export const Posts = [
         userId: 3,
         like: 61,
         comment: 2,
+        tags:"UK"
     },
     {
         id: 4,
@@ -85,6 +88,7 @@ export const Posts = [
         userId: 4,
         like: 7,
         comment: 3,
+        tags:"ARMENIA"
     },
     {
         id: 5,
@@ -93,6 +97,7 @@ export const Posts = [
         userId: 5,
         like: 23,
         comment: 5,
+        tags:"UK"
     },
     {
         id: 6,
@@ -101,6 +106,7 @@ export const Posts = [
         userId: 6,
         like: 44,
         comment: 6,
+        tags:"ARMENIA"
     },
     {
         id: 7,
@@ -110,6 +116,7 @@ export const Posts = [
         userId: 7,
         like: 52,
         comment: 3,
+        tags:"USA"
     },
     {
         id: 8,
@@ -118,6 +125,7 @@ export const Posts = [
         userId: 8,
         like: 15,
         comment: 1,
+        tags:"USA"
     },
     {
         id: 9,
@@ -127,6 +135,7 @@ export const Posts = [
         userId: 9,
         like: 11,
         comment: 2,
+        tags:"UK"
     },
     {
         id: 10,
@@ -135,5 +144,6 @@ export const Posts = [
         userId: 10,
         like: 104,
         comment: 12,
+        tags:"ARMENIA"
     },
 ];

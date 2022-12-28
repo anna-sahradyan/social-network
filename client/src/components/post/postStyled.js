@@ -13,8 +13,13 @@ export const Wrapper = styled.div`
 export const Left = styled.div`
   display: flex;
   align-items: center;
+  margin-top: 10px;
+`;
+export const Comment = styled.div`
+    
 `;
 export const Right = styled.div`
+    
 `;
 export const Center = styled.div`
   margin: 10px;
@@ -97,22 +102,40 @@ export const BottomSkeletonOne = styled.span`
 export const BottomSkeletonTwo = styled.span`
   position: absolute;
   display: flex;
-  margin-top:375px;
+  margin-top: 375px;
   margin-left: 40px;
 
 `;
-export const BottomSkeletonThree= styled.span`
+export const BottomSkeletonThree = styled.span`
   position: absolute;
   display: flex;
-  margin-top:375px;
+  margin-top: 375px;
   margin-left: 100px;
 
 `;
 export const BottomSkeletonFour = styled.span`
   position: absolute;
   display: flex;
-  margin-top:375px;
+  margin-top: 375px;
   margin-left: 440px;
 
+`;
+export const Tags = styled.div`
+ 
+  display: flex;
+  position: absolute;
+  margin-top: -40px;
+  padding: 10px;
+
+`;
+
+export const List = styled.ul`
+  list-style-type: none;
+`;
+export const Li = styled.li`
+
+`;
+export const Link = styled.a`
+  text-decoration: none;
 `;
 

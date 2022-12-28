@@ -1,21 +1,19 @@
 import React, {useState} from 'react';
 import {
     Bottom,
-    Center,
+    Center, Comment,
     Container,
     Img,
     ImgHeart,
     ImgLike, ImgPost,
-    Left,
-    Right,
+    Left, Li, Link, List, Right,
     Span, SpanComment,
-    SpanPost,
+    SpanPost, Tags,
     Top,
     Wrapper
 } from "./postStyled";
 import {MoreVert} from "@material-ui/icons";
 import {Users} from "../../data";
-
 
 
 const Post = ({post}) => {
@@ -44,14 +42,21 @@ const Post = ({post}) => {
                         <ImgPost src={`/img/${post.photo}`}/>
                     </Center>
                     <Bottom>
+                        <Tags>
+                            <List>
+
+                                    <Li><Link href={`/post?.tag/${post?.tags}`}>#{post?.tags}</Link></Li>
+
+                            </List>
+                        </Tags>
                         <Left>
                             <ImgHeart src={"/img/heart.png"} alt={"heart"} onClick={likeHandler}/>
                             <ImgLike src={"/img/like.png"} alt={"like"} onClick={likeHandler}/>
                             <Span>{like} people liked it</Span>
                         </Left>
-                        <Right>
+                        <Comment>
                             <SpanComment>{post.comments}comments</SpanComment>
-                        </Right>
+                        </Comment>
                     </Bottom>
                 </Wrapper>
             </Container>

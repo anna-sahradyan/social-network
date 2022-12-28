@@ -8,7 +8,7 @@ const Header = () => {
         <>
             <Container>
                 <Left>
-                    <Link> <Logo>ANNASOCIAL</Logo></Link>
+                    <Link href={"/"}> <Logo>ANNASOCIAL</Logo></Link>
 
                 </Left>
 

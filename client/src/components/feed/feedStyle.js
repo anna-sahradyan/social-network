@@ -6,6 +6,3 @@ export const Container = styled.div`
 export const Wrapper= styled.div`
   padding: 20px;
 `;
-export const Input= styled.input`
- 
-`;

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 export const Container = styled.div`
   width: 100%;
   height: 70px;
@@ -29,7 +28,7 @@ export const Logo = styled.h2`
   color: white;
 
 `;
-export const Link = styled.a`
+export const Link = styled.a` 
   text-decoration: none;
   cursor: pointer;
 
