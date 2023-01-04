@@ -15,7 +15,8 @@ export const postCreateValidator = [
     body("title","Enter article title").isLength({min:3}).isString(),
     body("text","Enter the text of the article").isLength({min: 10}).isString(),
     body("tags","invalid text format specify array").optional().isString(),
+    body(" likes","Enter likes").optional().isString(),
     body("imgUrl","invalid image link").optional().isString(),
-    body("likes","Enter likes").optional().isString(),
+
 
 ];

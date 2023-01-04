@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import {
     Bottom,
     Center, Comment,
@@ -14,36 +14,38 @@ import {
 } from "./postStyled";
 import {MoreVert} from "@material-ui/icons";
 import {Users} from "../../data";
-import axios from "../../axios";
+import {useSelector} from "react-redux";
+
+
+
 
 const Post = ({post}) => {
-    const [like, setLike] = useState(post.like);
+    const [like, setLike] = useState(post?.likes);
     const [isLiked, setIsLiked] = useState(false);
+    const {posts, tags} = useSelector(state => state.posts);
+    const isPostLoading = posts.status === "loading";
     const likeHandler = () => {
         setLike(isLiked ? like - 1 : like + 1);
         setIsLiked(!isLiked)
     }
-    useEffect(() => {
 
-        axios.get("/posts")
-    }, [])
     return (
         <>
             <Container>
                 <Wrapper>
                     <Top>
                         <Left>
-                            <Img src={Users.filter((u) => u.id === post.userId)[0].profilePicture}/>
-                            <Span>{Users.filter((u) => u.id === post.userId)[0].username}</Span>
-                            <Span>{post.data}</Span>
+                            {/*<Img src={Users.filter((u) => u.id === post.userId)[0].profilePicture}/>*/}
+                            {/*<Span>{Users.filter((u) => u.id === post.userId)[0].username}</Span>*/}
+                            <Span>{post?.text}</Span>
                         </Left>
                         <Right>
                             <MoreVert/>
                         </Right>
                     </Top>
                     <Center>
-                        <SpanPost>{post?.desc}</SpanPost>
-                        <ImgPost src={`/img/${post.photo}`}/>
+                        <SpanPost>{post?.title}</SpanPost>
+                        {/*<ImgPost src={`/img/${post.photo}`}/>*/}
                     </Center>
                     <Bottom>
                         <Tags>
@@ -59,7 +61,7 @@ const Post = ({post}) => {
                             <Span>{like} people liked it</Span>
                         </Left>
                         <Comment>
-                            <SpanComment>{post.comments}comments</SpanComment>
+                            {/*<SpanComment>{post?.comments}comments</SpanComment>*/}
                         </Comment>
                     </Bottom>
                 </Wrapper>

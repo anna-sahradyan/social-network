@@ -18,11 +18,11 @@ const storage = multer.diskStorage({
         cb(null, file.originalname);
     }
 });
-const upload = multer({storage: storage});
-// const upload = multer({dest:"server/uploads"})
+const upload = multer({storage});
+
 app.post("/upload", checkAuth, upload.single("image"), (req, res) => {
     res.json({
-        url: `/uploads${req.file.originalname}`,
+        url: `/uploads/${req.file.originalname}`,
 
     });
 });

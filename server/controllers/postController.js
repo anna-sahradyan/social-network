@@ -9,9 +9,10 @@ export const create = async (req, res) => {
         }
         const doc = new Post({
             title: req.body.title,
-            text: req.body.title,
+            text: req.body.text,
             ImgUrl: req.body.ImgUrl,
             tags: req.body.tags,
+            likes: req.body.likes,
             user: req.userId,
         });
         const post = await doc.save();
@@ -116,6 +117,7 @@ export const update = async (req, res) => {
                 text: req.body.title,
                 ImgUrl: req.body.ImgUrl,
                 user: req.userId,
+                likes: req.body.likes,
                 tags: req.body.tags,
 
             },
@@ -131,3 +133,18 @@ export const update = async (req, res) => {
     }
 
 }
+//!GETTAGS
+export const getLastTags = async (req, res) => {
+    try {
+        const posts = await Post.find().limit(5).exec();
+        const tags = posts.map((obj) => obj.tags)
+            .flat()
+            .slice(0, 5);
+        res.json(tags);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({
+            message: "Couldn't get tags",
+        });
+    }
+};
