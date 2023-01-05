@@ -1,13 +1,10 @@
 import React from 'react';
 import {
     Container,
-    Day, Following, Followings,
-    H,
-    Img,
-    ImgBirthday, ImgFollowing, Info, Item,
-    List,
+    HomePart,
+    ImgUser, Info, Item,
     RightWrapper,
-    Span, SpanFollowing, SpanKey, SpanUser, SpanValue, Title,
+    SpanKey, SpanUser, SpanValue, Text, Title, Users, UsersBox,
 
 
 } from "./rightBarStyled";
@@ -18,18 +15,63 @@ const RightBar = ({profile}) => {
     const HomeRightBar = () => {
         return (
             <>
-                <Day>
-                    <Img src={"/img/gift2.png"} alt={"gift"}/>
-                    <Span>
-                        <b>Anna Jane</b>and <b>3 other friends </b>have a birthday today.
-                    </Span>
-                </Day>
-                <ImgBirthday src={"/img/birthday.jpg"} alt={"birthday"}/>
-                <H>Online Friends</H>
-                <List>
-                    {/*{Users.map((item, index) => (<Online key={`${item}_${index}`} user={item}/>))}*/}
+                <HomePart>
+                <Title>Tags</Title>
+                <Info>
+                    <Item>
+                        <SpanKey>#</SpanKey>
+                        <SpanValue>City</SpanValue>
+                    </Item>
+                    <Item>
+                        <SpanKey>#</SpanKey>
+                        <SpanValue>From</SpanValue>
+                    </Item>
+                    <Item>
+                        <SpanKey>#</SpanKey>
+                        <SpanValue>Posts</SpanValue>
+                    </Item>
+                </Info>
+                </HomePart>
 
-                </List>
+                <Title> Comments </Title>
+                <Users>
+                    <UsersBox>
+                        <ImgUser src={`/img/person1.jpg`} alt={"person"}/>
+                        <SpanUser>Anna Paruryan</SpanUser>
+                        <Text>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi facere illum minima. Aperiam architecto aspernatur, cum, eos eveniet harum labore magni, nesciunt officiis quaerat tempore vel voluptas! Commodi culpa, soluta.</Text>
+                    </UsersBox>
+                    <UsersBox>
+                        <ImgUser src={"/img/person2.jpg"} alt={"person"}/>
+                        <SpanUser>Jane Tomline</SpanUser>
+                        <Text>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis consectetur cumque cupiditate ducimus earum eos, esse facere facilis fugit itaque iusto modi natus nemo nesciunt odit placeat provident unde ut?
+                    </Text>
+                    </UsersBox>
+                    <UsersBox>
+                        <ImgUser src={"/img/person3.jpg"} alt={"person"}/>
+                        <SpanUser>Alex Balduino</SpanUser>
+                        <Text>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur eius enim excepturi laborum perspiciatis provident veniam! Culpa cumque eum illo omnis perferendis perspiciatis possimus quia quo temporibus ullam! Dolores, omnis!lorem
+
+                        </Text>
+                    </UsersBox>
+                    <UsersBox>
+                        <ImgUser src={"http://localhost:3000/img/person4.jpg"} alt={"person"}/>
+                        <SpanUser>Toma Scot</SpanUser>
+                        <Text >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab debitis eos est excepturi exercitationem illo numquam odio perspiciatis, porro praesentium quaerat quis, quod similique, vel velit. Doloribus eveniet explicabo harum!
+                    </Text>
+                    </UsersBox>
+                    <UsersBox>
+                        <ImgUser src={"/img/person5.jpg"} alt={"person"}/>
+                        <SpanUser>Henry Bocman</SpanUser>
+                        <Text>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda consequuntur eligendi quam? Accusantium consectetur deleniti deserunt error iure vel. Accusantium asperiores blanditiis consequatur est hic incidunt magnam molestias porro vitae.
+                    </Text>
+                    </UsersBox>
+                    <UsersBox>
+                        <ImgUser src={"/img/person6.jpg"} alt={"person"}/>
+                        <SpanUser>Tomas Broue</SpanUser>
+                        <Text >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores cupiditate explicabo facilis libero necessitatibus perspiciatis placeat quae? A ab cumque
+                    </Text>
+                    </UsersBox>
+                </Users>
             </>
         )
     }
@@ -52,32 +94,33 @@ const RightBar = ({profile}) => {
                     </Item>
                 </Info>
                 <Title> User friends </Title>
-                <Followings>
-                    <Following>
-                        <ImgFollowing src={`/img/person1.jpg`} alt={"person"}/>
-                        <SpanFollowing>Anna Paruryan</SpanFollowing>
-                    </Following>
-                    <Following>
-                        <ImgFollowing src={"/img/person2.jpg"} alt={"person"}/>
-                        <SpanFollowing>Jane Tomline</SpanFollowing>
-                    </Following>
-                    <Following>
-                        <ImgFollowing src={"/img/person3.jpg"} alt={"person"}/>
-                        <SpanFollowing>Alex Balduino</SpanFollowing>
-                    </Following>
-                    <Following>
-                        <ImgFollowing src={"http://localhost:3000/img/person4.jpg"} alt={"person"}/>
-                        <SpanFollowing>Toma Scot</SpanFollowing>
-                    </Following>
-                    <Following>
-                        <ImgFollowing src={"/img/person5.jpg"} alt={"person"}/>
-                        <SpanFollowing>Henry Bocman</SpanFollowing>
-                    </Following>
-                    <Following>
-                        <ImgFollowing src={"/img/person6.jpg"} alt={"person"}/>
-                        <SpanFollowing>Tomas Broue</SpanFollowing>
-                    </Following>
-                </Followings>
+                <Users>
+                    <UsersBox>
+                        <ImgUser src={`/img/person1.jpg`} alt={"person"}/>
+                        <SpanUser>Anna Paruryan</SpanUser>
+
+                    </UsersBox>
+                    <UsersBox>
+                        <ImgUser src={"/img/person2.jpg"} alt={"person"}/>
+                        <SpanUser>Jane Tomline</SpanUser>
+                    </UsersBox>
+                    <UsersBox>
+                        <ImgUser src={"/img/person3.jpg"} alt={"person"}/>
+                        <SpanUser>Alex Balduino</SpanUser>
+                    </UsersBox>
+                    <UsersBox>
+                        <ImgUser src={"http://localhost:3000/img/person4.jpg"} alt={"person"}/>
+                        <SpanUser>Toma Scot</SpanUser>
+                    </UsersBox>
+                    <UsersBox>
+                        <ImgUser src={"/img/person5.jpg"} alt={"person"}/>
+                        <SpanUser>Henry Bocman</SpanUser>
+                    </UsersBox>
+                    <UsersBox>
+                        <ImgUser src={"/img/person6.jpg"} alt={"person"}/>
+                        <SpanUser>Tomas Broue</SpanUser>
+                    </UsersBox>
+                </Users>
             </>
         )
     }

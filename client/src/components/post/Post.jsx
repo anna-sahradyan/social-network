@@ -1,9 +1,8 @@
-import React, { useState} from 'react';
+import React, {useState} from 'react';
 import {
     Bottom,
     Center, Comment,
     Container,
-    Img,
     ImgHeart,
     ImgLike, ImgPost,
     Left, Li, Link, List, Right,
@@ -15,20 +14,26 @@ import {
 import {MoreVert} from "@material-ui/icons";
 import {Users} from "../../data";
 import {useSelector} from "react-redux";
-
-
-
-
-const Post = ({post}) => {
+import Card from '@mui/material/Card';
+import { CardContent, IconButton} from "@mui/material";
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Clear';
+const Post = ({post,imageUrl}) => {
     const [like, setLike] = useState(post?.likes);
     const [isLiked, setIsLiked] = useState(false);
+    const [flag, setFlag] = useState(false);
     const {posts, tags} = useSelector(state => state.posts);
     const isPostLoading = posts.status === "loading";
     const likeHandler = () => {
         setLike(isLiked ? like - 1 : like + 1);
         setIsLiked(!isLiked)
     }
-
+    const handleClick = () => {
+        setFlag(!flag)
+    }
+const onClickRemove = () => {
+  
+}
     return (
         <>
             <Container>
@@ -40,11 +45,29 @@ const Post = ({post}) => {
                             <Span>{post?.text}</Span>
                         </Left>
                         <Right>
-                            <MoreVert/>
+                            {flag && (
+                                <> <Card style={{position:"absolute", width:"120px",height:"60px",marginTop:"-30px",marginLeft:"-9%"}}>
+                                    <CardContent >
+                                        <Link href={`/posts/${post?._id}/edit`}>
+                                            <IconButton color={"primary"}>
+                                              <EditIcon/>
+                                            </IconButton>
+
+                                        </Link>
+                                        <IconButton onClick={onClickRemove} color="secondary">
+                                            <DeleteIcon />
+                                        </IconButton>
+                                    </CardContent>
+                                </Card></>
+                            )}
+                            <MoreVert onClick={handleClick}/>
                         </Right>
                     </Top>
                     <Center>
                         <SpanPost>{post?.title}</SpanPost>
+                        {imageUrl && (
+                            <ImgPost src={imageUrl} alt={"title"}/>
+                           )}
                         {/*<ImgPost src={`/img/${post.photo}`}/>*/}
                     </Center>
                     <Bottom>

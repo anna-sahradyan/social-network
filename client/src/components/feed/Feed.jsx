@@ -3,7 +3,6 @@ import {Container, Wrapper} from "./feedStyle";
 import {Tab, Tabs} from "@mui/material";
 import Post from "../post/Post";
 import {Posts} from "../../data";
-import Share from "../share/Share";
 import AddPost from "../addPost/AddPost";
 import PostSkeleton from "../post/PostSkeleton";
 import {useDispatch, useSelector} from "react-redux";
@@ -27,7 +26,7 @@ const Feed = () => {
                         <Tab label={"New"}/>
                         <Tab label={"Popular"}/>
                     </Tabs>
-                    <Share/>
+
                     {(isPostLoading ? [Array(5)] : posts.items).map((obj, index) => isPostLoading ? (
                         <Post key={`${obj}_${index}`} isLouding={true}/>) : (
                         <Post key={`${obj}_${index}`} post={obj}/>))}
