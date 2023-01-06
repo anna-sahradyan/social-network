@@ -6,7 +6,7 @@ import {
     ImgHeart,
     ImgLike, ImgPost,
     Left, Li, Link, List, Right,
-    Span, SpanComment,
+    Span,
     SpanPost, Tags,
     Top,
     Wrapper
@@ -18,7 +18,8 @@ import Card from '@mui/material/Card';
 import { CardContent, IconButton} from "@mui/material";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Clear';
-const Post = ({post,imageUrl}) => {
+import UserInfo from "../userInfo/UserInfo";
+const Post = ({post,user}) => {
     const [like, setLike] = useState(post?.likes);
     const [isLiked, setIsLiked] = useState(false);
     const [flag, setFlag] = useState(false);
@@ -46,9 +47,10 @@ const onClickRemove = () => {
                         </Left>
                         <Right>
                             {flag && (
-                                <> <Card style={{position:"absolute", width:"120px",height:"60px",marginTop:"-30px",marginLeft:"-9%"}}>
+                                <>
+                                    <Card style={{position:"absolute", width:"120px",height:"60px",marginTop:"-30px",marginLeft:"-9%"}}>
                                     <CardContent >
-                                        <Link href={`/posts/${post?._id}/edit`}>
+                                        <Link href={`/posts/${post.userId}/edit`}>
                                             <IconButton color={"primary"}>
                                               <EditIcon/>
                                             </IconButton>
@@ -58,17 +60,19 @@ const onClickRemove = () => {
                                             <DeleteIcon />
                                         </IconButton>
                                     </CardContent>
-                                </Card></>
+                                </Card>
+                                </>
                             )}
                             <MoreVert onClick={handleClick}/>
                         </Right>
                     </Top>
                     <Center>
+                        <UserInfo {...user} additionalText={post?.userId}/>
                         <SpanPost>{post?.title}</SpanPost>
-                        {imageUrl && (
-                            <ImgPost src={imageUrl} alt={"title"}/>
-                           )}
-                        {/*<ImgPost src={`/img/${post.photo}`}/>*/}
+                        {/*{imageUrl && (*/}
+                            <ImgPost src={`/img/${post?.photo}`} />
+                           {/*)}*/}
+                        {/*<ImgPost src={`/img/${post?.photo}`}/>*/}
                     </Center>
                     <Bottom>
                         <Tags>
