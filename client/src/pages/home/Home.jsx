@@ -4,6 +4,7 @@ import Header from "../../components/header/Header";
 import Feed from "../../components/feed/Feed";
 import SideBar from "../../components/sidebar/SideBar";
 import RightBar from "../../components/rightbar/RightBar";
+import FullPost from "../fullPost/FullPost";
 
 const Home = () => {
     return (
