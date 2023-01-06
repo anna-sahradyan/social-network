@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {
     Bottom,
-    Center, Comment,
+    Center, Children, Comment,
     Container,
     ImgHeart,
     ImgLike, ImgPost,
@@ -15,11 +15,15 @@ import {MoreVert} from "@material-ui/icons";
 import {Users} from "../../data";
 import {useSelector} from "react-redux";
 import Card from '@mui/material/Card';
-import { CardContent, IconButton} from "@mui/material";
+import {CardContent, IconButton} from "@mui/material";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Clear';
 import UserInfo from "../userInfo/UserInfo";
-const Post = ({post,user}) => {
+import EyeIcon from '@mui/icons-material/RemoveRedEyeOutlined';
+import CommentIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
+
+
+const Post = ({post, user, children, viewsCount, commentCount}) => {
     const [like, setLike] = useState(post?.likes);
     const [isLiked, setIsLiked] = useState(false);
     const [flag, setFlag] = useState(false);
@@ -32,9 +36,9 @@ const Post = ({post,user}) => {
     const handleClick = () => {
         setFlag(!flag)
     }
-const onClickRemove = () => {
-  
-}
+    const onClickRemove = () => {
+
+    }
     return (
         <>
             <Container>
@@ -48,19 +52,25 @@ const onClickRemove = () => {
                         <Right>
                             {flag && (
                                 <>
-                                    <Card style={{position:"absolute", width:"120px",height:"60px",marginTop:"-30px",marginLeft:"-9%"}}>
-                                    <CardContent >
-                                        <Link href={`/posts/${post.userId}/edit`}>
-                                            <IconButton color={"primary"}>
-                                              <EditIcon/>
-                                            </IconButton>
+                                    <Card style={{
+                                        position: "absolute",
+                                        width: "120px",
+                                        height: "60px",
+                                        marginTop: "-30px",
+                                        marginLeft: "-9%"
+                                    }}>
+                                        <CardContent>
+                                            <Link href={`/posts/${post.userId}/edit`}>
+                                                <IconButton color={"primary"}>
+                                                    <EditIcon/>
+                                                </IconButton>
 
-                                        </Link>
-                                        <IconButton onClick={onClickRemove} color="secondary">
-                                            <DeleteIcon />
-                                        </IconButton>
-                                    </CardContent>
-                                </Card>
+                                            </Link>
+                                            <IconButton onClick={onClickRemove} color="secondary">
+                                                <DeleteIcon/>
+                                            </IconButton>
+                                        </CardContent>
+                                    </Card>
                                 </>
                             )}
                             <MoreVert onClick={handleClick}/>
@@ -70,8 +80,8 @@ const onClickRemove = () => {
                         <UserInfo {...user} additionalText={post?.userId}/>
                         <SpanPost>{post?.title}</SpanPost>
                         {/*{imageUrl && (*/}
-                            <ImgPost src={`/img/${post?.photo}`} />
-                           {/*)}*/}
+                        <ImgPost src={`/img/${post?.photo}`}/>
+                        {/*)}*/}
                         {/*<ImgPost src={`/img/${post?.photo}`}/>*/}
                     </Center>
                     <Bottom>
@@ -82,6 +92,8 @@ const onClickRemove = () => {
 
                             </List>
                         </Tags>
+                        {children && <Children>{children}</Children>}
+
                         <Left>
                             <ImgHeart src={"/img/heart.png"} alt={"heart"} onClick={likeHandler}/>
                             <ImgLike src={"/img/like.png"} alt={"like"} onClick={likeHandler}/>
@@ -89,6 +101,10 @@ const onClickRemove = () => {
                         </Left>
                         <Comment>
                             {/*<SpanComment>{post?.comments}comments</SpanComment>*/}
+                            <EyeIcon color={"primary"}/>
+                            <Span>{viewsCount}12</Span>
+                            <CommentIcon color={"secondary"}/>
+                            <Span>{commentCount}2</Span>
                         </Comment>
                     </Bottom>
                 </Wrapper>

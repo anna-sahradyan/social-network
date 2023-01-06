@@ -15,11 +15,9 @@ export const Left = styled.div`
   align-items: center;
   margin-top: 10px;
 `;
-export const Comment = styled.div`
-    
-`;
+
 export const Right = styled.div`
-    
+
 `;
 export const Center = styled.div`
   margin: 10px;
@@ -121,7 +119,7 @@ export const BottomSkeletonFour = styled.span`
 
 `;
 export const Tags = styled.div`
- 
+
   display: flex;
   position: absolute;
   margin-top: -40px;
@@ -137,8 +135,18 @@ export const Li = styled.li`
 `;
 export const Link = styled.a`
   text-decoration: none;
-  color:#2D7ECD;
+  color: #2D7ECD;
   font-weight: 500;
+
+`;
+//!Children
+export const Children = styled.div`
+          margin: 30px 0 50px;
+`
+;
+export const Comment = styled.div`
+  display: flex;
+  padding: 0;
+  margin: 20px 0 0 0;
   
 `;
-
