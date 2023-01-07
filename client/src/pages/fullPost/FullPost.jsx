@@ -4,6 +4,7 @@ import SideBlock from "../../components/sideBlock/SideBlock";
 import TagsBlock from "../../components/block/TagsBlock";
 import CommentsBlock from "../../components/block/CommentsBlock";
 import {Container} from "./FullPostStyled";
+import {AddComment} from "../../components/addComment/AddComment";
 // import {Container} from "../../components/feed/feedStyle";
 
 const FullPost = () => {
@@ -11,6 +12,7 @@ const FullPost = () => {
         <>
             <Container>
                 <Post/>
+                <AddComment/>
                 <CommentsBlock/>
             </Container>
         </>
