@@ -23,8 +23,8 @@ const PostSchema = new mongoose.Schema({
 
     },
     likes:{
-        type:"Array",
-        default:[],
+        type: Number,
+        default: 0,
     },
     viewsCount: {
         type: Number,

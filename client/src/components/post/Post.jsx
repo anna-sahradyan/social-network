@@ -100,7 +100,7 @@ const Post = ({post, user, children, viewsCount, commentCount,createdAt,isFullPo
                         <Left>
                             <ImgHeart src={"/img/heart.png"} alt={"heart"} onClick={likeHandler}/>
                             <ImgLike src={"/img/like.png"} alt={"like"} onClick={likeHandler}/>
-                            <Span>{like} people liked it</Span>
+                            <Span>{post?.likes} people liked it</Span>
                         </Left>
                         <Comment>
                             {/*<SpanComment>{post?.comments}comments</SpanComment>*/}
