@@ -23,7 +23,7 @@ import EyeIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import CommentIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
 
 
-const Post = ({post, user, children, viewsCount, commentCount}) => {
+const Post = ({post, user, children, viewsCount, commentCount,createdAt,isFullPost}) => {
     const [like, setLike] = useState(post?.likes);
     const [isLiked, setIsLiked] = useState(false);
     const [flag, setFlag] = useState(false);
@@ -60,7 +60,7 @@ const Post = ({post, user, children, viewsCount, commentCount}) => {
                                         marginLeft: "-9%"
                                     }}>
                                         <CardContent>
-                                            <Link href={`/posts/${post.userId}/edit`}>
+                                            <Link href={`/posts/${post?._id}/edit`}>
                                                 <IconButton color={"primary"}>
                                                     <EditIcon/>
                                                 </IconButton>
@@ -77,8 +77,9 @@ const Post = ({post, user, children, viewsCount, commentCount}) => {
                         </Right>
                     </Top>
                     <Center>
-                        <UserInfo {...user} additionalText={post?.userId}/>
-                        <SpanPost>{post?.title}</SpanPost>
+                        <UserInfo {...user} additionalText={createdAt}/>
+                        {isFullPost ? post?.title:<Link href={`/posts/${post?._id}`}><SpanPost>{post?.title}</SpanPost></Link>}
+
                         {/*{imageUrl && (*/}
                         <ImgPost src={`/img/${post?.photo}`}/>
                         {/*)}*/}
@@ -87,8 +88,10 @@ const Post = ({post, user, children, viewsCount, commentCount}) => {
                     <Bottom>
                         <Tags>
                             <List>
+                                {post?.tags.map((name,index)=>(
+                                    <Li key={`${name}_${index}`}><Link href={`/tag/${name}`}>#{name}</Link></Li>
+                                ))}
 
-                                <Li><Link href={`/post?.tag/${post?.tags}`}>#{post?.tags}</Link></Li>
 
                             </List>
                         </Tags>

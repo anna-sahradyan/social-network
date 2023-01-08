@@ -15,7 +15,7 @@ const App = () => {
                 <Route path={"/register"} element={<Register/>}/>
                 <Route path={"/login"} element={<Login/>}/>
                 <Route path={"/addPost"} element={<AddPost/>}/>
-                <Route path={"/fullPost"} element={<FullPost/>}/>
+                <Route path={"/posts/:id"} element={<FullPost/>}/>
                 <Route path={"/profile/:username"} element={<Profile/>}/>
                 {/*<Route path="/register" element =*/}
                 {/*    {user ? <Navigate replace to= "/" /> : <Register />}/>*/}

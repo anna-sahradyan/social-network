@@ -11,11 +11,13 @@ import {
     TitleSocial,
     Wrapper
 } from "./registerStyled";
+import Header from "../../components/header/Header";
 
 
 const Register = () => {
     return (
         <>
+            <Header/>
             <Container>
                 <TitleSocial>Annasocial</TitleSocial>
                 <Text>Connect with friends and the world around you on Annasocial.</Text>

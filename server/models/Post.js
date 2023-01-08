@@ -6,12 +6,18 @@ const PostSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    comments:{
+        type: String,
+        required: true,
+
+    },
     text: {
         type: String,
         required: true,
         unique: true,
 
-    }, tags: {
+    },
+    tags: {
         type: Array,
         default: [],
 

@@ -9,6 +9,7 @@ import RightBar from "../../components/rightbar/RightBar";
 const Profile = () => {
     return (
         <>
+
             <Header/>
             <Container>
                 <SideBar/>

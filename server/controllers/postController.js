@@ -9,9 +9,10 @@ export const create = async (req, res) => {
         }
         const doc = new Post({
             title: req.body.title,
+            comments:req.body.comments,
             text: req.body.text,
             ImgUrl: req.body.ImgUrl,
-            tags: req.body.tags,
+            tags: req.body.tags.slice(","),
             likes: req.body.likes,
             user: req.userId,
         });
@@ -118,7 +119,8 @@ export const update = async (req, res) => {
                 ImgUrl: req.body.ImgUrl,
                 user: req.userId,
                 likes: req.body.likes,
-                tags: req.body.tags,
+                tags: req.body.tags.split(","),
+                comments:req.body.comments
 
             },
         );
@@ -145,6 +147,21 @@ export const getLastTags = async (req, res) => {
         console.log(err);
         res.status(500).json({
             message: "Couldn't get tags",
+        });
+    }
+};
+//!GETCOMMENTS
+export const getComments = async (req, res) => {
+    try {
+        const posts = await Post.find().limit(5).exec();
+        const comments = posts.map((obj) => obj.comments)
+            .flat()
+            .slice(0, 5);
+        res.json(comments);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({
+            message: "Couldn't get comments",
         });
     }
 };

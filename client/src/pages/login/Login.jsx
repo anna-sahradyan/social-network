@@ -1,9 +1,11 @@
 import React from 'react';
 import {Button, Container, Form, Input, Link, Text, Title, TitleSocial, Wrapper} from "./loginStyled";
+import Header from "../../components/header/Header";
 
 const Login = () => {
     return (
         <>
+            <Header/>
             <Container>
                 <TitleSocial>Annasocial</TitleSocial>
                 <Text>Connect with friends and the world around you on Annasocial.</Text>
