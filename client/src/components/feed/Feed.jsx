@@ -6,7 +6,7 @@ import {Posts} from "../../data";
 import AddPost from "../addPost/AddPost";
 import PostSkeleton from "../post/PostSkeleton";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchPosts, fetchTags} from "../../containers/postSlice";
+import {fetchPosts, fetchTags} from "../../store/postSlice";
 
 const Feed = () => {
     const dispatch = useDispatch();
