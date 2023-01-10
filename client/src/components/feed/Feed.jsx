@@ -26,7 +26,6 @@ const Feed = () => {
                         <Tab label={"New"}/>
                         <Tab label={"Popular"}/>
                     </Tabs>
-
                     {(isPostLoading ? [Array(5)] : posts.items).map((obj, index) => isPostLoading ? (
                         <Post key={`${obj}_${index}`} isLouding={true}/>) : (
                         <Post key={`${obj}_${index}`} post={obj}/>))}

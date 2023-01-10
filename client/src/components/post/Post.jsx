@@ -21,14 +21,17 @@ import DeleteIcon from '@mui/icons-material/Clear';
 import UserInfo from "../userInfo/UserInfo";
 import EyeIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import CommentIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
+import PostSkeleton from "./PostSkeleton";
 
 
-const Post = ({post, user, children, viewsCount, commentCount,createdAt,isFullPost}) => {
+const Post = ({post, user, children, viewsCount, commentCount,createdAt,isFullPost,isLoading}) => {
+
     const [like, setLike] = useState(post?.likes);
     const [isLiked, setIsLiked] = useState(false);
     const [flag, setFlag] = useState(false);
-    const {posts, tags} = useSelector(state => state.posts);
+    const {posts} = useSelector(state => state.posts);
     const isPostLoading = posts.status === "loading";
+    console.log(post?.tags)
     const likeHandler = () => {
         setLike(isLiked ? like - 1 : like + 1);
         setIsLiked(!isLiked)
@@ -39,14 +42,19 @@ const Post = ({post, user, children, viewsCount, commentCount,createdAt,isFullPo
     const onClickRemove = () => {
 
     }
+    if(isLoading){
+        return (
+            <>
+                <PostSkeleton/>
+            </>
+        )
+    }
     return (
         <>
             <Container>
                 <Wrapper>
                     <Top>
                         <Left>
-                            {/*<Img src={Users.filter((u) => u.id === post.userId)[0].profilePicture}/>*/}
-                            {/*<Span>{Users.filter((u) => u.id === post.userId)[0].username}</Span>*/}
                             <Span>{post?.text}</Span>
                         </Left>
                         <Right>
