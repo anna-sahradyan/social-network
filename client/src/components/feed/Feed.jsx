@@ -7,7 +7,8 @@ import AddPost from "../addPost/AddPost";
 import PostSkeleton from "../post/PostSkeleton";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchPosts, fetchTags} from "../../store/postSlice";
-
+//import {CommentsBlock, TagsBlock} from "../block";
+// import TagsBlock from "../block/TagsBlock";
 const Feed = () => {
     const dispatch = useDispatch();
     const {posts, tags} = useSelector(state => state.posts);
@@ -26,8 +27,8 @@ const Feed = () => {
                         <Tab label={"New"}/>
                         <Tab label={"Popular"}/>
                     </Tabs>
-                    {(isPostLoading ? [Array(5)] : posts.items).map((obj, index) => isPostLoading ? (
-                        <Post key={`${obj}_${index}`} isLouding={true}/>) : (
+                    {(isPostLoading ? [...Array(5)] : posts.items).map((obj, index) => isPostLoading ? (
+                        <Post key={`${obj}_${index}`} isLoading={true}/>) : (
                         <Post key={`${obj}_${index}`} post={obj}/>))}
 
                 </Wrapper>

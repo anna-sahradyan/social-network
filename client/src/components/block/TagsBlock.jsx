@@ -1,16 +1,26 @@
 import React from 'react';
 import SideBlock from "../sideBlock/SideBlock";
-import {List} from "@mui/material";
+import {List, Skeleton} from "@mui/material";
+import {useSelector} from "react-redux";
 
-const TagsBlock = ({items,isLoading = true}) => {
+const TagsBlock = () => {
+    const {posts, tags} = useSelector(state => state.posts);
+    const isPostLoading = posts.status === "loading";
     return (
-        <div>
-            <SideBlock title={"Tags"}>
+        <>
+            <SideBlock title={"Tags"} style={{width:"100%"}}>
                 <List>
-                    {isLoading?[...Array(5)]:items}
+                    {(isPostLoading ?[...Array(1)]:tags).map((tag,index)=>(<React.Fragment key={`${tag}_${index}`}>
+                        {isPostLoading ?(
+                            <div style={{position:"absolute",top:"-28px",left:"80px"}}>
+                            <Skeleton variant="text" height={25} width={60} />
+                            </div>
+                        ):(<span>{tag.tags}</span>)}
+
+                    </React.Fragment>))}
                 </List>
             </SideBlock>
-        </div>
+        </>
     );
 };
 

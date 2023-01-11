@@ -14,6 +14,7 @@ const store = configureStore({
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
+    <>
     <Provider store={store}>
         <Router>
             <ThemeProvider theme={theme}>
@@ -23,5 +24,6 @@ root.render(
         </Router>
 
     </Provider>
+    </>
 );
 

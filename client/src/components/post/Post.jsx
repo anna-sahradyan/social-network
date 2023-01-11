@@ -5,7 +5,7 @@ import {
     Container,
     ImgHeart,
     ImgLike, ImgPost,
-    Left, Li, Link, List, Right,
+    Left,  Link,  Right,
     Span,
     SpanPost, Tags,
     Top,
@@ -89,19 +89,18 @@ const Post = ({post, user, children, viewsCount, commentCount,createdAt,isFullPo
                         {isFullPost ? post?.title:<Link href={`/posts/${post?._id}`}><SpanPost>{post?.title}</SpanPost></Link>}
 
                         {/*{imageUrl && (*/}
-                        <ImgPost src={`/img/${post?.photo}`}/>
+                        <ImgPost src={`/http://localhost:8000/${post?.user.
+                            avatarUrl}`}/>
                         {/*)}*/}
                         {/*<ImgPost src={`/img/${post?.photo}`}/>*/}
                     </Center>
                     <Bottom>
                         <Tags>
-                            <List>
+
                                 {post?.tags.map((name,index)=>(
-                                    <Li key={`${name}_${index}`}><Link href={`/tag/${name}`}>#{name}</Link></Li>
+                                    <Link key={`${name}_${index}`} href={`/tag/${name}`}>#{name}</Link>
                                 ))}
 
-
-                            </List>
                         </Tags>
                         {children && <Children>{children}</Children>}
 

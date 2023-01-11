@@ -119,7 +119,6 @@ export const BottomSkeletonFour = styled.span`
 
 `;
 export const Tags = styled.div`
-
   display: flex;
   position: absolute;
   margin-top: -40px;
@@ -137,6 +136,7 @@ export const Link = styled.a`
   text-decoration: none;
   color: #2D7ECD;
   font-weight: 500;
+  margin: 6px;
 
 `;
 //!Children

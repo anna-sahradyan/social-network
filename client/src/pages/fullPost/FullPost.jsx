@@ -15,6 +15,7 @@ const FullPost = () => {
             <Container>
                 <Post/>
                 <AddComment/>
+                <TagsBlock/>
                 <CommentsBlock/>
             </Container>
         </>
