@@ -1,7 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import Post from "../../components/post/Post";
-import TagsBlock from "../../components/block/TagsBlock";
-import CommentsBlock from "../../components/block/CommentsBlock";
+//import TagsBlock from "../../components/block/TagsBlock";
 import {Container} from "./FullPostStyled";
 import {AddComment} from "../../components/addComment/AddComment";
 import Header from "../../components/header/Header";
@@ -26,6 +24,7 @@ const FullPost = () => {
     const {id} = useParams();
     const [flag, setFlag] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+
     useEffect(() => {
         axios.get(`/posts/${id}`).then(res => {
             setData(res.data);
@@ -34,16 +33,7 @@ const FullPost = () => {
             console.log(err)
         })
     }, [])
-    // useEffect(() => {
-    //     if (id && id) {
-    //         dispatch(fetchPostId(id));
-    //
-    //     }
-    //     // return () => {
-    //     //     dispatch(removeList());
-    //     // }
-    //
-    // }, [dispatch, id]);
+
     const handleClick = () => {
         setFlag(!flag)
     }
@@ -55,14 +45,6 @@ const FullPost = () => {
         <>
             <Header/>
             <Container>
-                {/*<Post id={data?._id} title={data?.title} ImgUrl={data?.ImgUrl} user={data?.user}*/}
-                {/*      createdAt={data?.createdAt} viewsCount={data?.viewsCount} commentCount={3} tags={data?.tags}*/}
-                {/*      isFullPost comments={data?.comments} text={data?.text}/>*/}
-                {/*{isPostLoaded && (posts.items).map((item, index) =>*/}
-
-
-                {/*{isLoading ? (data).map((item, index) =>*/}
-                {/*    <React.Fragment key={`${item}_${index}`}>*/}
                 {isLoading ? (Array(1).fill(0).map((_, index) =>
                     <FullPostSkeleton key={index}/>)) : (<Top>
                         <Left>
