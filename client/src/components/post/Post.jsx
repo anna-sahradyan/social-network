@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     Bottom,
     Center, Children, Comment,
     Container,
     ImgHeart,
     ImgLike, ImgPost,
-    Left,  Link,  Right,
+    Left, Link, Right,
     Span,
     SpanPost, Tags,
     Top,
@@ -22,16 +22,18 @@ import UserInfo from "../userInfo/UserInfo";
 import EyeIcon from '@mui/icons-material/RemoveRedEyeOutlined';
 import CommentIcon from '@mui/icons-material/ChatBubbleOutlineOutlined';
 import PostSkeleton from "./PostSkeleton";
+import {useParams} from "react-router-dom";
+import axios from "../../axios";
 
 
-const Post = ({post, user, children, viewsCount, commentCount,createdAt,isFullPost,isLoading}) => {
+const Post = ({post, children, isLoading, isFullPost, commentCount, user}) => {
 
     const [like, setLike] = useState(post?.likes);
     const [isLiked, setIsLiked] = useState(false);
     const [flag, setFlag] = useState(false);
     const {posts} = useSelector(state => state.posts);
     const isPostLoading = posts.status === "loading";
-    console.log(post?.tags)
+
     const likeHandler = () => {
         setLike(isLiked ? like - 1 : like + 1);
         setIsLiked(!isLiked)
@@ -42,13 +44,7 @@ const Post = ({post, user, children, viewsCount, commentCount,createdAt,isFullPo
     const onClickRemove = () => {
 
     }
-    if(isLoading){
-        return (
-            <>
-                <PostSkeleton/>
-            </>
-        )
-    }
+
     return (
         <>
             <Container>
@@ -68,7 +64,7 @@ const Post = ({post, user, children, viewsCount, commentCount,createdAt,isFullPo
                                         marginLeft: "-9%"
                                     }}>
                                         <CardContent>
-                                            <Link href={`/posts/${post?._id}/edit`}>
+                                            <Link href={`/posts/${posts?._id}/edit`}>
                                                 <IconButton color={"primary"}>
                                                     <EditIcon/>
                                                 </IconButton>
@@ -85,22 +81,20 @@ const Post = ({post, user, children, viewsCount, commentCount,createdAt,isFullPo
                         </Right>
                     </Top>
                     <Center>
-                        <UserInfo {...user} additionalText={createdAt}/>
-                        {isFullPost ? post?.title:<Link href={`/posts/${post?._id}`}><SpanPost>{post?.title}</SpanPost></Link>}
+                        <UserInfo {...user} additionalText={post?.createdAt}/>
+                        {isFullPost ? post?.title :
+                            <Link href={`/posts/${post?._id}`}><SpanPost>{post?.title}</SpanPost></Link>}
 
                         {/*{imageUrl && (*/}
-                        <ImgPost src={`/http://localhost:8000/${post?.user.
-                            avatarUrl}`}/>
+                        <ImgPost src={`/http://localhost:8000/${post?.user.avatarUrl}`}/>
                         {/*)}*/}
                         {/*<ImgPost src={`/img/${post?.photo}`}/>*/}
                     </Center>
                     <Bottom>
                         <Tags>
-
-                                {post?.tags.map((name,index)=>(
-                                    <Link key={`${name}_${index}`} href={`/tag/${name}`}>#{name}</Link>
-                                ))}
-
+                            {post?.tags.map((name, index) => (
+                                <Link key={`${name}_${index}`} href={`/tag/${name}`}>#{name}</Link>
+                            ))}
                         </Tags>
                         {children && <Children>{children}</Children>}
 
@@ -110,9 +104,8 @@ const Post = ({post, user, children, viewsCount, commentCount,createdAt,isFullPo
                             <Span>{post?.likes} people liked it</Span>
                         </Left>
                         <Comment>
-                            {/*<SpanComment>{post?.comments}comments</SpanComment>*/}
                             <EyeIcon color={"primary"}/>
-                            <Span>{viewsCount}12</Span>
+                            <Span>{post?.viewsCount}</Span>
                             <CommentIcon color={"secondary"}/>
                             <Span>{commentCount}2</Span>
                         </Comment>

@@ -1,24 +1,22 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Container, Wrapper} from "./feedStyle";
 import {Tab, Tabs} from "@mui/material";
 import Post from "../post/Post";
 import {Posts} from "../../data";
-import AddPost from "../addPost/AddPost";
 import PostSkeleton from "../post/PostSkeleton";
 import {useDispatch, useSelector} from "react-redux";
 import {fetchPosts, fetchTags} from "../../store/postSlice";
-//import {CommentsBlock, TagsBlock} from "../block";
-// import TagsBlock from "../block/TagsBlock";
+
 const Feed = () => {
     const dispatch = useDispatch();
     const {posts, tags} = useSelector(state => state.posts);
-    const isPostLoading = posts.status === "loading";
+    const isPostLoaded = posts.status === "loaded";
     useEffect(() => {
         dispatch(fetchPosts())
         dispatch(fetchTags())
-    }, []);
 
-    console.log(tags);
+    }, []);
+    console.log(posts)
     return (
         <>
             <Container>
@@ -27,9 +25,10 @@ const Feed = () => {
                         <Tab label={"New"}/>
                         <Tab label={"Popular"}/>
                     </Tabs>
-                    {(isPostLoading ? [...Array(5)] : posts.items).map((obj, index) => isPostLoading ? (
-                        <Post key={`${obj}_${index}`} isLoading={true}/>) : (
-                        <Post key={`${obj}_${index}`} post={obj}/>))}
+                    {isPostLoaded ? (posts.items).map((item, index) => <Post key={`${item}_${index}`}
+                                                                             post={item}/>) : Array(5).fill(0).map((_, index) =>
+                        <PostSkeleton key={index}/>)}
+
 
                 </Wrapper>
             </Container>

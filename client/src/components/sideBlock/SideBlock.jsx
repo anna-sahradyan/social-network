@@ -12,7 +12,6 @@ const SideBlock = ({title,children}) => {
             {title}
         </Typography>
                     {children}
-
                 </Paper>
             </Container>
         </>

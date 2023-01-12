@@ -14,6 +14,7 @@ export const Left = styled.div`
   display: flex;
   align-items: center;
   margin-top: 10px;
+  margin-left: 15px;
 `;
 
 export const Right = styled.div`
@@ -88,8 +89,56 @@ export const TopSkeleton = styled.div`
   display: flex;
   margin-left: 60px;
 `;
+export const TopSkeleton1 = styled.div`
+          position: absolute;
+          display: flex;
+          margin-left: 60px;
+          margin-top: -55px;
+    `
+;
+export const TopSkeleton2 = styled.div`
+          position: absolute;
+          display: flex;
+          margin-left: 60px;
+          margin-top: -35px;
+    `
+;
+export const TopSkeleton3 = styled.div`
+  position: absolute;
+  display: flex;
+  margin-left: 60px;
+  margin-top: -10px;
+`;
+export const TagSkeleton = styled.div`
+
+`;
+export const CommentSkeleton = styled.div`
+
+`;
+export const TopComment = styled.div`
+
+`;
+export const TopComment2 = styled.div`
+  position: absolute;
+  display: flex;
+  margin-left: 60px;
+  margin-top: -35px;
+`;
+export const TopComment3 = styled.div`
+  margin: 5px;
+  
+`;
+
 export const Rec = styled.div`
   margin: 30px 0;
+`;
+export const EyeSkeleton = styled.div`
+  position: absolute;
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 5px;
+  
+
 `;
 export const BottomSkeletonOne = styled.span`
   display: flex;
@@ -142,11 +191,11 @@ export const Link = styled.a`
 //!Children
 export const Children = styled.div`
           margin: 30px 0 50px;
-`
+    `
 ;
 export const Comment = styled.div`
   display: flex;
   padding: 0;
   margin: 20px 0 0 0;
-  
+
 `;
