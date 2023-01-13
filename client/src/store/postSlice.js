@@ -22,10 +22,7 @@ const postSlice = createSlice({
             items: [],
             status: "loading"
         },
-        postId: {
-            items: [],
-            status: "loading"
-        }
+
     },
     reducers: {},
     extraReducers: {
