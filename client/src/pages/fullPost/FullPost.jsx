@@ -75,7 +75,9 @@ const FullPost = ({commentCount,isFullPost}) => {
                                                 width: "120px",
                                                 height: "60px",
                                                 marginTop: "-30px",
-                                                marginLeft: "-9%"
+                                                marginLeft: "-9%",
+                                                boxShadow: "0 0 16px -8px rgba(0, 0, 0, 0.68)"
+
                                             }}>
                                                 <CardContent>
                                                     <Link href={`/posts/${data._id}/edit`}>
@@ -100,7 +102,7 @@ const FullPost = ({commentCount,isFullPost}) => {
                                     <Link href={`/posts/${data._id}`}><SpanPost>{data.title}</SpanPost></Link>}
 
                                 {/*{imageUrl && (*/}
-                                {/*<ImgPost src={`/http://localhost:8000/${data.user.avatarUrl}`}/>*/}
+                                <ImgPost src={`/http://localhost:8000/${data?.ImgUrl}`}/>
                                 {/*)}*/}
                                 {/*<ImgPost src={`/img/${post?.photo}`}/>*/}
                             </Center>

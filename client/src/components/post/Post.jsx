@@ -81,12 +81,12 @@ const Post = ({post, children, isLoading, isFullPost, commentCount, user}) => {
                         </Right>
                     </Top>
                     <Center>
-                        <UserInfo {...user} additionalText={post?.createdAt}/>
+                        <UserInfo  additionalText={post?.createdAt}/>
                         {isFullPost ? post?.title :
                             <Link href={`/posts/${post?._id}`}><SpanPost>{post?.title}</SpanPost></Link>}
 
                         {/*{imageUrl && (*/}
-                        <ImgPost src={`/http://localhost:8000/${post?.user.avatarUrl}`}/>
+                        <ImgPost src={`/${post?.ImgUrl}`}/>
                         {/*)}*/}
                         {/*<ImgPost src={`/img/${post?.photo}`}/>*/}
                     </Center>
