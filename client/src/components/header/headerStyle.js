@@ -39,8 +39,7 @@ export const Button = styled.button`
   border: none;
   padding: 5px 20px;
   border-radius: 5px;
-  color: teal;
   cursor: pointer;
-  
+  color: ${props => props.type === "filled" ? "#EC5990" : "teal"};
   
 `;

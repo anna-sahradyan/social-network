@@ -1,9 +1,19 @@
 import React from 'react';
-import { Container, Left, Right, Logo, Link, Button} from "./headerStyle";
+import {Container, Left, Right, Logo, Link, Button} from "./headerStyle";
+import {useDispatch, useSelector} from "react-redux";
+import {logout, selectIsAuth} from "../../store/authSlice";
 
 
 const Header = () => {
-    const isAuth = true;
+    const isAuth = useSelector(selectIsAuth);
+    const dispatch = useDispatch();
+    const onClickLogout = () => {
+        if(window.confirm("Are you sure you want to log")){
+            dispatch(logout());
+        }
+
+
+    }
     return (
         <>
             <Container>
@@ -13,18 +23,16 @@ const Header = () => {
                 </Left>
 
                 <Right>
-                    {!isAuth?(<>
+                    {isAuth ? (<>
                         <Link href={"/posts/create"}>
                             <Button>Create Post</Button>
                         </Link>
-                        <Link>
-                            <Button>Log out</Button>
-                        </Link>
-                    </>):(<>
-                        <Link href={"/login"}>
+                            <Button type="filled" onClick={onClickLogout}>Log out</Button>
+                    </>) : (<>
+                        <Link href={"/register"}>
                             <Button>Create an account</Button>
                         </Link>
-                        <Link href={"/register"}>
+                        <Link href={"/login"}>
                             <Button>Log in</Button>
                         </Link>
                     </>)
