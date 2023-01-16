@@ -26,7 +26,7 @@ import {useParams} from "react-router-dom";
 import axios from "../../axios";
 
 
-const Post = ({post, children, isLoading, isFullPost, commentCount, user}) => {
+const Post = ({post, children, isEditable, isFullPost, commentCount, user}) => {
 
     const [like, setLike] = useState(post?.likes);
     const [isLiked, setIsLiked] = useState(false);
@@ -54,7 +54,7 @@ const Post = ({post, children, isLoading, isFullPost, commentCount, user}) => {
                             <Span>{post?.text}</Span>
                         </Left>
                         <Right>
-                            {flag && (
+                            { flag &&(
                                 <>
                                     <Card style={{
                                         position: "absolute",

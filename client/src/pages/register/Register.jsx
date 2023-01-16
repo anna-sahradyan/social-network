@@ -13,23 +13,36 @@ import {
 } from "./registerStyled";
 import Header from "../../components/header/Header";
 import {Link} from "../login/loginStyled";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useForm} from "react-hook-form";
-import {fetchAuth} from "../../store/authSlice";
+import {fetchRegister, selectIsAuth} from "../../store/authSlice";
+import {toast} from "react-toastify";
+import {Navigate} from "react-router-dom";
 
 
 const Register = () => {
     const dispatch = useDispatch();
+    const isAuth = useSelector(selectIsAuth);
     const {register, handleSubmit, setError, formState: {errors, isValid}} = useForm({
         defaultValues: {
-            email: "anna@gmail.com",
-            password: "12345678910",
-            fullName:"Anna"
+            email: "",
+            password: "",
+            fullName:""
         },
         mode: "onChange"
     })
-    const onSubmit = (values) => {
-        dispatch(fetchAuth(values));
+    const onSubmit = async (values) => {
+        const data = await dispatch(fetchRegister(values));
+        if(!data.payload){
+            return  toast.info("You are not authorized");
+        }
+        if ("token" in data.payload) {
+            window.localStorage.setItem("token", data.payload.token);
+
+        }
+    }
+    if (isAuth) {
+        return <Navigate to={"/"}/>
     }
 
     return (
@@ -43,22 +56,20 @@ const Register = () => {
                     <Form onSubmit={handleSubmit(onSubmit)}>
                         <Input placeholder={'email'}{...register("email", {required: "Enter Your Email"})}
                                error={Boolean(errors.email?.message)} type={"email"}/>
-                        <p style={{color: "#EC5990"}}>{errors.email?.message}</p>
+                        <p style={{color: "#EC5990",margin:"4px 5px 0"}}>{errors.email?.message}</p>
                         <Input placeholder={'password'}{...register("password", {required: "Enter Your Password"})}
                                error={Boolean(errors.password?.message)}/>
-                        <p style={{color: "#EC5990"}}>{errors.password?.message}</p>
+                        <p style={{color: "#EC5990",margin:"4px 5px 0"}}>{errors.password?.message}</p>
                         <Input placeholder={'FullName'}{...register("fullName", {required: "Enter Your FullName"})}
                                error={Boolean(errors.fullName?.message)}/>
-                        <p style={{color: "#EC5990"}}>{errors.password?.message}</p>
-                        <Button type={"submit"}>SIGN Up</Button>
-                        <Link>DO NOT YOU REMEMBER THE PASSWORD?</Link>
-                        <Link>CREATE A NEW ACCOUNT</Link>
+                        <p style={{color: "#EC5990",margin:"4px 5px 0"}}>{errors.fullName?.message}</p>
+                        <Button type={"submit"} >SIGN Up</Button>
+
                         <Agreement>
                             By creating an account , I consent to the processing of my data in accordance with the <b>PRIVACY
                             POLICY</b>
                         </Agreement>
-                        <Button>Create</Button>
-                        <ButtonAccount>Log into Account</ButtonAccount>
+
 
                     </Form>
 

@@ -2,7 +2,7 @@ import express from "express";
 import {create, getAll, getLastTags, getOne, remove, update,getComments} from "../controllers/postController.js";
 import {postCreateValidator} from "../validations/index.js";
 import checkAuth from "../utils/checkAuth.js";
-import handleValidationErrors from "../utils/handleValidationErrors.js";
+import handleValidationErrors from "../validations/handleValidationErrors.js";
 
 
 const router = express.Router();

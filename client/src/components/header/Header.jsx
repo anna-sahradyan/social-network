@@ -10,8 +10,8 @@ const Header = () => {
     const onClickLogout = () => {
         if(window.confirm("Are you sure you want to log")){
             dispatch(logout());
+            window.localStorage.removeItem("token");
         }
-
 
     }
     return (
@@ -24,7 +24,7 @@ const Header = () => {
 
                 <Right>
                     {isAuth ? (<>
-                        <Link href={"/posts/create"}>
+                        <Link href={"/addPost"}>
                             <Button>Create Post</Button>
                         </Link>
                             <Button type="filled" onClick={onClickLogout}>Log out</Button>

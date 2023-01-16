@@ -1,35 +1,21 @@
-import React, { useRef, useState} from "react";
+import React, {useRef, useState} from "react";
 import {Button, TextField} from "@mui/material";
-// import SimpleMDE from 'react-simplemde-editor';
-// import "easymde/dist/easymde.min.css";
 import JoditEditor from "jodit-react";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import {Buttons, Container, Link, Wrapper} from "./addPostStyle.js";
+import {useSelector} from "react-redux";
+import {selectIsAuth} from "../../store/authSlice";
+import {Navigate} from "react-router-dom";
 
 
 const AddPost = () => {
     const imageUrl = "";
     const [value, setValue] = useState("");
     const editor = useRef(null);
-
-    // const options = useMemo(() => ({
-    //     spellChecker: false,
-    //     maxHeight: "400px",
-    //     autofocus: true,
-    //     placeholder: "Enter text",
-    //     status: false,
-    //     indentWithTabs: false,
-    //     tabSize: 4,
-    //     autosave: {
-    //         enabled: true,
-    //         delay: 1000,
-    //         uniqueId: "demo",
-    //     },
-    // }), []);
-    // const onChange = useCallback((value) => {
-    //     setValue(value);
-    // }, []);
-    console.log(value)
+    const isAuth = useSelector(selectIsAuth);
+    if (isAuth) {
+        return <Navigate to={"/"}/>
+    }
 
     return (
         <>

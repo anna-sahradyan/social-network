@@ -1,5 +1,5 @@
-import React from 'react';
-import { Route, Routes} from "react-router-dom";
+import React, {useEffect} from 'react';
+import {Route, Routes} from "react-router-dom";
 import Home from "./pages/home/Home";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
@@ -8,10 +8,20 @@ import AddPost from "./components/addPost/AddPost";
 import FullPost from "./pages/fullPost/FullPost";
 import 'react-toastify/dist/ReactToastify.css';
 import {ToastContainer} from "react-toastify";
+import {useDispatch, useSelector} from "react-redux";
+import {fetchAuthMe, selectIsAuth} from "./store/authSlice";
+
 const App = () => {
+    const dispatch = useDispatch();
+    const isAuth = useSelector(selectIsAuth);
+    useEffect(() => {
+            dispatch(fetchAuthMe(isAuth));
+
+
+    }, []);
     return (
         <>
-            <ToastContainer />
+            <ToastContainer/>
             <Routes>
                 <Route path={"/"} element={<Home/>}/>
                 <Route path={"/register"} element={<Register/>}/>

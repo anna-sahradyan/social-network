@@ -86,13 +86,13 @@ export const getMe = async (req, res) => {
         if(!user){
             return res.status(404).json({
                 message:"User couldn't found "
-            })
+            });
         }
-        const {passwordHash, ...userData} = user._doc;
-        res.json(userData);
+       const {passwordHash,...userData} = user._doc;
+        return  res.json(userData);
     } catch (err) {
         res.status(500).json({
             message: "No access "
         });
     }
-}
+};

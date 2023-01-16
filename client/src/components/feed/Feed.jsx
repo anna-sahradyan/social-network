@@ -10,13 +10,14 @@ import {fetchPosts, fetchTags} from "../../store/postSlice";
 const Feed = () => {
     const dispatch = useDispatch();
     const {posts, tags} = useSelector(state => state.posts);
+    const userData = useSelector((state) => state.auth.data);
     const isPostLoaded = posts.status === "loaded";
     useEffect(() => {
         dispatch(fetchPosts())
         dispatch(fetchTags())
 
     }, []);
-    console.log(posts)
+    console.log(userData)
     return (
         <>
             <Container>
@@ -25,8 +26,9 @@ const Feed = () => {
                         <Tab label={"New"}/>
                         <Tab label={"Popular"}/>
                     </Tabs>
-                    {isPostLoaded ? (posts.items).map((item, index) => <Post key={`${item}_${index}`}
-                                                                             post={item}/>) : Array(5).fill(0).map((_, index) =>
+                    {isPostLoaded ? (posts.items).map((item, index) => <Post key={`${item}_${index} `}
+                                                                             post={item}
+                                                                             isEditable={userData?._id === item.user._id}/>) : Array(5).fill(0).map((_, index) =>
                         <PostSkeleton key={index}/>)}
 
 
