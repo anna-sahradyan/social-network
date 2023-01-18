@@ -9,10 +9,13 @@ export const Container = styled.div`
 `;
 export const Wrapper = styled.div`
   padding: 10px;
+  width: 80%;
+  margin: 50px auto;
 `;
 export const Buttons = styled.div`
 display: flex;
 `;
+
 export const Link = styled.a`
 
 `;

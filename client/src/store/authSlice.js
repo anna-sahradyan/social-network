@@ -15,11 +15,14 @@ export const fetchAuthMe = createAsyncThunk(`auth/fetchAuthMe`, async () => {
     return data
 });
 
+
 const authSlice = createSlice({
     name: "auth",
     initialState: {
         data: null,
-        status: "loading"
+        status: "loading",
+        user: null,
+        token: null
     },
     reducers: {
         logout: (state) => {
@@ -33,10 +36,13 @@ const authSlice = createSlice({
             state.status = "loading";
             state.data = null;
 
+
         },
         [fetchAuth.fulfilled]: (state, action) => {
             state.status = "loaded";
             state.data = action.payload;
+            state.user = action.payload.user;
+            // state.token = action.payload.token;
 
 
         },
@@ -55,7 +61,8 @@ const authSlice = createSlice({
         [fetchRegister.fulfilled]: (state, action) => {
             state.status = "loaded";
             state.data = action.payload;
-
+            state.user = action.payload.user;
+            // state.token = action.payload.token;
 
         },
         [fetchRegister.rejected]: (state) => {
@@ -74,7 +81,8 @@ const authSlice = createSlice({
         [fetchAuthMe.fulfilled]: (state, action) => {
             state.status = "loaded";
             state.data = action.payload;
-
+            state.user = action.payload?.user;
+             state.token = action.payload?.token;
 
         },
         [fetchAuthMe.rejected]: (state) => {
@@ -88,4 +96,5 @@ const authSlice = createSlice({
 });
 export const {logout} = authSlice.actions;
 export const selectIsAuth = (state) => Boolean(state.auth.data);
+export const selectCheckIsAuth = (state) => Boolean(state.auth.token);
 export default authSlice.reducer;

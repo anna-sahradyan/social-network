@@ -1,4 +1,4 @@
-import jwt from "jsonwebtoken";
+import jwt, {decode} from "jsonwebtoken";
 import User from "../models/User.js";
 import bcrypt from "bcrypt";
 //!SIGNUP REGISTER
@@ -18,8 +18,8 @@ export const signUp = async (req, res) => {
         const token = jwt.sign({
                 _id: user._id,
 
-            },"secret"
-           ,
+            }, "secret"
+            ,
 
             {
                 expiresIn: "30d"
@@ -44,6 +44,7 @@ export const signIn = async (req, res) => {
     try {
         const user = await User.findOne({
             email: req.body.email
+
         })
         if (!user) {
             return req.status(404).json({
@@ -82,17 +83,19 @@ export const signIn = async (req, res) => {
 //!GET ME
 export const getMe = async (req, res) => {
     try {
+
         const user = await User.findById(req.userId);
-        if(!user){
+
+        if (!user) {
             return res.status(404).json({
-                message:"User couldn't found "
+                message: "User couldn't found",
             });
         }
-       const {passwordHash,...userData} = user._doc;
-        return  res.json(userData);
+        const {passwordHash, ...userData} = user._doc;
+        res.json(userData);
     } catch (err) {
         res.status(500).json({
-            message: "No access "
+            message: "No access ",
         });
     }
 };

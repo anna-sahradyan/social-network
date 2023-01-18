@@ -8,17 +8,17 @@ import AddPost from "./components/addPost/AddPost";
 import FullPost from "./pages/fullPost/FullPost";
 import 'react-toastify/dist/ReactToastify.css';
 import {ToastContainer} from "react-toastify";
-import {useDispatch, useSelector} from "react-redux";
-import {fetchAuthMe, selectIsAuth} from "./store/authSlice";
+import {useDispatch} from "react-redux";
+import {fetchAuthMe} from "./store/authSlice";
 
 const App = () => {
     const dispatch = useDispatch();
-    const isAuth = useSelector(selectIsAuth);
+    // const isAuth = useSelector(selectIsAuth);
     useEffect(() => {
-            dispatch(fetchAuthMe(isAuth));
+         dispatch(fetchAuthMe());
 
 
-    }, []);
+    }, [dispatch]);
     return (
         <>
             <ToastContainer/>
