@@ -10,7 +10,7 @@ router.get(`/tags`,getLastTags);
 router.get(`/comments`,getComments);
 router.get(`/`, getAll);
 router.get(`/:id`, getOne);
-router.post(`/`, checkAuth, postCreateValidator,handleValidationErrors, create);
+router.post(`/`,  checkAuth,postCreateValidator,handleValidationErrors, create);
 router.delete(`/:id`, checkAuth, remove);
 router.patch(`/:id`, checkAuth,postCreateValidator,handleValidationErrors, update);
 

@@ -1,23 +1,21 @@
 import Post from "../models/Post.js";
-import {validationResult} from "express-validator";
+
 //!CREATE
 export const create = async (req, res) => {
     try {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.status(400).json(errors.array());
-        }
+
         const doc = new Post({
             title: req.body.title,
-            comments:req.body.comments,
+            comments: req.body.comments,
             text: req.body.text,
             ImgUrl: req.body.ImgUrl,
-            tags: req.body.tags.slice(","),
+            tags: req.body.tags.split(","),
             likes: req.body.likes,
             user: req.userId,
         });
         const post = await doc.save();
-        res.json(post)
+        res.json(post);
+
     } catch (err) {
         console.log(err)
         res.status(500).json({
@@ -25,6 +23,7 @@ export const create = async (req, res) => {
         });
     }
 }
+
 //!GET ALL
 export const getAll = async (req, res) => {
     try {
@@ -120,7 +119,7 @@ export const update = async (req, res) => {
                 user: req.userId,
                 likes: req.body.likes,
                 tags: req.body.tags.split(","),
-                comments:req.body.comments
+                comments: req.body.comments
 
             },
         );
